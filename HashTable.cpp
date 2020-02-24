@@ -5,7 +5,7 @@ HashTable::HashTable()
 
 }
 
-HashTable::HashTable(int(*func)(long long))
+HashTable::HashTable(int(*func)(string, long long))
 {
 	this->hashFunction = func;
 }
@@ -26,12 +26,24 @@ void HashTable::Add(string name, long long number)
 	Node* node = new Node;
 	node->name = name;
 	node->number = number;
-	cout << name << number << endl;
-	int index = hashFunction(number);
+	//cout << name << number << endl;
+	int index = hashFunction(name, number);
 	entries[index].push_back(node);
 }
 
-void HashTable::setHashFunction(int(*func)(long long))
+string HashTable::getName(string name, long long number)
+{
+	int index = hashFunction(name, number);
+	for (int i = 0; i < entries[index].size(); i++)
+	{
+		if (entries[index][i]->number == number &&
+			entries[index][i]->name == name)
+			return entries[index][i]->name;
+	}
+	return "not found";
+}
+
+void HashTable::setHashFunction(int(*func)(string, long long))
 {
 	this->hashFunction = func;
 }

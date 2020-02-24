@@ -19,7 +19,7 @@
         const ctx = document.getElementById('myChart').getContext('2d');
         const globalTemps = await getData();
         const myChart = new Chart(ctx, {
-          type: 'line',
+          type: 'bar',
           data: {
             labels: globalTemps.years,
             datasets: [

@@ -4,9 +4,10 @@
 
 using namespace std;
 
-Results::Results(HashTable& ht)
+Results::Results(HashTable& ht, string fileName)
 {
 	table = ht;
+	file = fileName;
 }
 
 void Results::calculateResults()
@@ -27,11 +28,21 @@ void Results::calculateResults()
 		chainLength[table.getSizeAtEntry(i)]++;
 	}
 	//display somehow, maybe to some file
-	ofstream myfile("output.csv");
+	ofstream myfile(file);
 	for (int i = 0; i <= longestChain; i++)
 	{
 		myfile << i << "," << chainLength[i] << endl;
 	}
 	myfile.close();
 	//free(chainLength);
+}
+
+void Results::setHashTable(HashTable& ht)
+{
+	table = ht;
+}
+
+void Results::setFileName(string fileName)
+{
+	this->file = fileName;
 }

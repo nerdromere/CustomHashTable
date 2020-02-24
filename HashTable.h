@@ -13,13 +13,14 @@ private:
 	};
 	static const int TABLE_SIZE = 4177;
 	vector<Node*> entries[TABLE_SIZE];
-	int (*hashFunction)(long long);
+	int (*hashFunction)(string, long long);
 public:
 	HashTable();
-	HashTable(int (*func)(long long));
+	HashTable(int (*func)(string, long long));
 	~HashTable();
 	void Add(string name, long long number);
-	void setHashFunction(int (*func)(long long));
+	string getName(string name, long long number);
+	void setHashFunction(int (*func)(string, long long));
 	int getSizeAtEntry(int entry);
 	int getTableSize() const;
 };
