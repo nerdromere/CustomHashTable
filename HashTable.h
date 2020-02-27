@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//Parser.h, Illarion Eremenko, 1611733, February 26, 2020
 class HashTable
 {
 private:
@@ -24,4 +25,3 @@ public:
 	int getSizeAtEntry(int entry);
 	int getTableSize() const;
 };
-

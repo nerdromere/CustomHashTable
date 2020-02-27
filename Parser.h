@@ -1,3 +1,4 @@
+//Parser.h, Illarion Eremenko, 1611733, February 26, 2020
 #pragma once
 #include "HashTable.h"
 #include <iostream>

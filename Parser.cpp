@@ -1,3 +1,4 @@
+//Parser.h, Illarion Eremenko, 1611733, February 26, 2020
 #include "Parser.h"
 #include <iostream>
 #include <fstream>
@@ -15,10 +16,6 @@ void Parser::splitNameNumber(string line, string& name, long long& number)
 	tempNum.erase(3, 2); // remove the ") "
 	tempNum.erase(6, 1); // remove the  "-"
 	number = stoll(tempNum, nullptr, 10);
-	//replace(tempNum.begin(), tempNum.end(), '(', ' ');
-	//replace(tempNum.begin(), tempNum.end(), ')', ' ');
-	//replace(tempNum.begin(), tempNum.end(), '-', ' ');
-	//cout << name << " " << number << endl;
 }
 
 Parser::Parser(string filename)

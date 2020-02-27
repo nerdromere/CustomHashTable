@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var HORIZONTAL = false;   // `false` for vertical (column) chart, `true` for horizontal bar
+  var HORIZONTAL = true;   // `false` for vertical (column) chart, `true` for horizontal bar
   var STACKED = false;  // `false` for individual bars, `true` for stacked bars
 
   var TITLE = 'English Learners by Select School Districts in Connecticut, 2018-19';

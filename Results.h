@@ -6,11 +6,9 @@ private:
 	int longestChain;
 	int* chainLength;
 	string file;
-	HashTable table;
 public:
-	Results(HashTable& ht, string filename);
-	void calculateResults();
-	void setHashTable(HashTable& ht);
+	Results(string filename);
+	void calculateResults(HashTable& table);
 	void setFileName(string filename);
 };
 

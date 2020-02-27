@@ -2,7 +2,6 @@
 
 HashTable::HashTable()
 {
-
 }
 
 HashTable::HashTable(int(*func)(string, long long))
@@ -12,13 +11,15 @@ HashTable::HashTable(int(*func)(string, long long))
 
 HashTable::~HashTable()
 {
-	//for (int i = 0; i < entries->size(); i++)
-	//{
-	//	for (int j = 0; j < entries[i].size(); j++)
-	//	{
-	//		delete entries[i].at[0];
-	//	}
-	//}
+	for (int i = 0; i < this->TABLE_SIZE; i++)
+	{
+		for (int j = entries[i].size() - 1; j >= 0 ; j--)
+		{
+			Node* temp = entries[i].back();
+			entries[i].pop_back();
+			delete temp;
+		}
+	}
 }
 
 void HashTable::Add(string name, long long number)

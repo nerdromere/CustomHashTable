@@ -1,16 +1,16 @@
+//Results.cpp, Illarion Eremenko, 1611733, February 26, 2020
 #include "Results.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-Results::Results(HashTable& ht, string fileName)
+Results::Results(string fileName)
 {
-	table = ht;
 	file = fileName;
 }
 
-void Results::calculateResults()
+void Results::calculateResults(HashTable& table)
 {
 	//find the maximum
 	longestChain = table.getSizeAtEntry(0);
@@ -34,12 +34,7 @@ void Results::calculateResults()
 		myfile << i << "," << chainLength[i] << endl;
 	}
 	myfile.close();
-	//free(chainLength);
-}
-
-void Results::setHashTable(HashTable& ht)
-{
-	table = ht;
+	free(chainLength);
 }
 
 void Results::setFileName(string fileName)

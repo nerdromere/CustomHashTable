@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int hash1(string name, long long number);
+int hash0(string name, long long number);
 int quadraticSum(string name, long long number);
 int hash3(string name, long long number);
 int perfectHash(string name, long long number);
@@ -17,22 +17,14 @@ int main()
 	Parser parser("phonebook.txt");
 	//create table
 	HashTable ht;
-	ht.setHashFunction(quadraticSum);
+	ht.setHashFunction(hash3);
 	parser.parseFile(ht);
-	Results r(ht, "output.csv");
-	r.calculateResults();
-	//create second table
-	//HashTable ht2;
-	//ht2.setHashFunction(hash1);
-	//parser.parseFile(ht2);
-	//r.setFileName("output2.csv");
-	//r.setHashTable(ht2);
-	//r.calculateResults();
-	cout << ht.getName("Jones, Nancy", 2064302333) << endl;
+	Results r("output.csv");
+	r.calculateResults(ht);
 }
 
 //
-int hash1(string name, long long number)
+int hash0(string name, long long number)
 {
 	return rand() % 4177;
 }
@@ -46,11 +38,12 @@ int quadraticSum(string name, long long number)
 	{
 		int num = number % 10;
 		sum += num * num * iter++;
+		//sum += num * num;
 		number /= 10;
 	}
 	for (char c : name)
 	{
-		sum += c * iter++;
+		sum += c * c * iter++;
 	}
 	//cout << sum << endl;
 	return sum % 4177;
@@ -58,9 +51,11 @@ int quadraticSum(string name, long long number)
 
 int hash3(string name, long long number)
 {
-	long long hash = 3;
-	hash = (59 * hash + (int)(number ^ (number >> 32))) % 4177;
-	return (int)hash;
+	hash<string> nameHash;
+	size_t num1 = nameHash(name);
+	hash<long long> numberHash;
+	size_t num2 = numberHash(number);
+	return (num1 * num2) % 4177;
 }
 
 int perfectHash(string name, long long number)

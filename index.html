@@ -14,7 +14,7 @@
     <script>
 
       window.addEventListener('load', setup);
-
+        
       async function setup() {
         const ctx = document.getElementById('myChart').getContext('2d');
         const globalTemps = await getData();
@@ -24,19 +24,82 @@
             labels: globalTemps.years,
             datasets: [
               {
-                label: 'Occurence of Chain Length',
+                label: 'Random  ',
                 data: globalTemps.temps,
                 fill: false,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(47, 84, 150, 1)',
+                backgroundColor: 'rgba(47, 84, 150, 0.5)',
                 borderWidth: 1
               }
             ]
           },
-          options: {}
+            /////////////////////////////
+          options: {
+//              animation: {
+//                  duration: 1000,
+//                onComplete: document.getElementById('myChart').setAttribute('id', this.toBase64Image())
+//              },
+            title: {
+              display: true,
+              fontFamily: 'Times New Roman',
+              text: 'Standard Library Hash',
+              fontSize: 25,
+            },
+            legend: {
+              display: false,
+            },
+            scales: {
+              xAxes: [{
+                stacked: false,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Chain Lengths',
+                  fontFamily: 'Times New Roman',
+                  fontSize: 25
+                },
+                gridLines: {
+                  display: true,
+                },
+                ticks: {
+                  beginAtZero: true,
+                  callback: function(value, index, values) {
+                    return value.toLocaleString();
+                  }
+                }
+              }],
+              yAxes: [{
+                stacked: false,
+                beginAtZero: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Occurance of Each Chain Length',
+                  fontFamily: 'Times New Roman',
+                  fontSize: 25
+                },
+                gridLines: {
+                  display: true,
+                },
+            ticks: {
+              beginAtZero: true,
+              callback: function(value, index, values) {
+                return value.toLocaleString()
+              }
+            }
+          }]
+        },
+        tooltips: {
+          displayColors: false,
+          callbacks: {
+            label: function(tooltipItem, all) {
+              return all.datasets[tooltipItem.datasetIndex].label
+                + ': ' + tooltipItem.yLabel.toLocaleString();
+            }
+          }
+        }
+      }
         });
       }
-
+    
       async function getData() {
         // const response = await fetch('testdata.csv');
         const response = await fetch('output.csv');
@@ -51,6 +114,8 @@
         });
         return { years, temps };
       }
-    </script>
+
+      </script>
+      <img id="url" />
   </body>
 </html>
